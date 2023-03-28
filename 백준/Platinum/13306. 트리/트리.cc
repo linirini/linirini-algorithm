@@ -19,9 +19,7 @@ int find(int x) {
 void merge(int x, int y) {
 	x = find(x);
 	y = find(y);
-	if (x != y) {
-		parent[x] = y;
-	}
+	if (x != y)parent[x] = y;
 }
 int main() {
 	ios_base::sync_with_stdio(0); cout.tie(0); cin.tie(0);
