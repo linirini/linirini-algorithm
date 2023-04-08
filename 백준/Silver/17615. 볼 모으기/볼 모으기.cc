@@ -8,29 +8,26 @@ string str;
 int main() {
 	ios_base::sync_with_stdio(0); cout.tie(0); cin.tie(0);
 	cin >> N>>str;
-	for (int i = 0; i < str.length(); i++) {
+	for (int i = 0; i < N; i++) {
 		if (str[i] == 'R')Rcnt++;
+		else Bcnt++;
 	}
-	Bcnt = N - Rcnt;
-	if (N == 1||Bcnt == N || Rcnt == N) {
-		cout << 0;
-		return 0;
-	}
-	char st = str[0];
-	int cnt = 1,i=1;
-	while (st == str[i]) {
+	ans = min(Rcnt, Bcnt);
+	char prev = str[0];
+	int cnt = 0;
+	for(int i=0;i<N;i++) {
+		if (prev != str[i])break;
 		cnt++;
-		i++;
 	}
-	if (st == 'R')ans = min(Bcnt, Rcnt - cnt);
-	else ans = min(Bcnt - cnt, Rcnt);
-	st = str[N - 1];
-	cnt = 1,i=N-2;
-	while (st == str[i]) {
+	if (prev == 'R')ans = min(ans, min(Bcnt, Rcnt - cnt));
+	else ans = min(ans, min(Bcnt - cnt, Rcnt));
+	prev = str[N - 1]; 
+	cnt = 0;
+	for(int i=N-1;i>=0;i--) {
+		if (prev != str[i])break;
 		cnt++;
-		i--;
 	}
-	if (st == 'R')ans = min(Bcnt, Rcnt - cnt);
-	else ans = min(Bcnt - cnt, Rcnt);
+	if (prev == 'R')ans = min(ans, min(Bcnt, Rcnt - cnt));
+	else ans = min(ans, min(Bcnt - cnt, Rcnt));
 	cout << ans;
 }
