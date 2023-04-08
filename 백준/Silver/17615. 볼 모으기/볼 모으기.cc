@@ -1,8 +1,9 @@
 #include<iostream>
 #include<algorithm>
+#include<string>
 using namespace std;
 //#17615_볼 모으기
-int N,Rcnt,Bcnt,ans=1e9;
+int N,Rcnt,Bcnt,ans=500001;
 string str;
 int main() {
 	ios_base::sync_with_stdio(0); cout.tie(0); cin.tie(0);
@@ -15,25 +16,21 @@ int main() {
 		cout << 0;
 		return 0;
 	}
-	char prev = str[0];
-	int cnt = 1;
-	for (int i = 1; i < N; i++) {
-		if (prev == str[i])cnt++;
-		else {
-			if (str[0] == 'R')ans = min(Bcnt, Rcnt - cnt);
-			else ans = min(Bcnt - cnt, Rcnt);
-			break;
-		}
+	char st = str[0];
+	int cnt = 1,i=1;
+	while (st == str[i]) {
+		cnt++;
+		i++;
 	}
-	prev = str[N - 1];
-	cnt = 1;
-	for (int i = N-2; i >=0; i--) {
-		if (prev == str[i])cnt++;
-		else {
-			if (str[N-1] == 'R')ans = min(Bcnt, Rcnt - cnt);
-			else ans = min(Bcnt - cnt, Rcnt);
-			break;
-		}
+	if (st == 'R')ans = min(Bcnt, Rcnt - cnt);
+	else ans = min(Bcnt - cnt, Rcnt);
+	st = str[N - 1];
+	cnt = 1,i=N-2;
+	while (st == str[i]) {
+		cnt++;
+		i--;
 	}
+	if (st == 'R')ans = min(Bcnt, Rcnt - cnt);
+	else ans = min(Bcnt - cnt, Rcnt);
 	cout << ans;
 }
