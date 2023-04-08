@@ -1,2 +1,2 @@
 # linirini-algorithm
-Baekjoon Online Judge algorithm-study
+Linirini's algorithm-study
