@@ -2,7 +2,7 @@
 #include<algorithm>
 #include<queue>
 using namespace std;
-//#1697_숨바꼭질
+//#13549_숨바꼭질 3
 int N, K, visited[200001];
 int main() {
 	ios_base::sync_with_stdio(0); cout.tie(0); cin.tie(0);
