@@ -2,6 +2,7 @@
 #include<algorithm>
 #include<cmath>
 using namespace std;
+//#1443_망가진 계산기
 int D, P,ans,Min=1e9;
 void go(int mul, int num,int cnt) {
 	if (cnt==P){
