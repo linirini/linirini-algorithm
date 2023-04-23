@@ -7,14 +7,14 @@ int dir[4][2] = { {0,1},{1,0},{1,1},{-1,1} };
 bool visited[19][19][4][2];
 char dfs(int x, int y, int d, char color, int cnt) {
 	visited[x][y][d][color - '1'] = true;
-	int nR = x + dir[d][0];
-	int nC = y + dir[d][1];
-	if (nR < 0 || nR >= 19 || nC < 0 || nC >= 19 || board[nR][nC] != color) {
+	int nx = x + dir[d][0];
+	int ny = y + dir[d][1];
+	if (nx < 0 || nx >= 19 || ny < 0 || ny >= 19 || board[nx][ny] != color) {
 		if (cnt == 5) return color;
 		else return '0';
 
 	}
-	return dfs(nR, nC, d, color, cnt + 1);
+	return dfs(nx, ny, d, color, cnt + 1);
 }
 int main() {
 	ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
