@@ -27,7 +27,8 @@ int main() {
 		st = line[i].first.first;
 		en = line[i].first.second;
 		int idx = line[i].second;
-		if (!visited[idx] && l <= st && en <= r) {
+		if (visited[idx])continue;
+		if (l <= st && en <= r) {
 			visited[idx] = 1;
 			continue;
 		}
