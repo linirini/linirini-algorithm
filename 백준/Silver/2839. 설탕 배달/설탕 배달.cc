@@ -1,18 +1,18 @@
 #include<iostream>
 #include<algorithm>
 using namespace std;
-int N,cnt;
-int main(){
-    cin>>N;
-    while(1){
-        if(N%5==0){
-            cnt+=N/5;
-            break;
-        }
-        N-=3;
-        cnt++;
-        if(N<=0)break;
-    }
-    if(N<0)cout<<-1<<'\n';
-    else cout<<cnt<<'\n';
+//#2839_설탕 배달
+int N,ans;
+int main() {
+	ios_base::sync_with_stdio(0); cout.tie(0);
+	cin >> N;
+	while (N>0) {
+		if (!(N % 5)) {
+			ans += N / 5;
+			break;
+		}
+		N -= 3;
+		ans++;
+	}
+	N<0?cout<<-1:cout << ans;
 }
