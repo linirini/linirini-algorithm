@@ -1,20 +1,19 @@
 #include<iostream>
 #include<algorithm>
 #include<vector>
+#include<queue>
 using namespace std;
 //#10423_전기가 부족해
 int N, M, K, u, v, w,parent[1001],visited[1001],ans;
-vector<pair<int,pair<int, int>>>edge;
+priority_queue<pair<int,pair<int, int>>,vector<pair<int, pair<int, int>>>,greater<pair<int, pair<int, int>>>>pq;
 int find(int x) {
 	if (parent[x] == -1)return -1;
 	if (parent[x] == x)return x;
 	else return parent[x] = find(parent[x]);
 }
 void merge(int x, int y) {
-	x = find(x);
-	y = find(y);
 	if (y == -1)swap(x, y);
-	if (x != y) parent[y] = x;
+	parent[y] = x;
 }
 bool isAllConnected() {
 	for (int i = 1; i <= N; i++)
@@ -32,14 +31,17 @@ int main() {
 	}
 	for (int i = 0; i < M; i++) {
 		cin >> u >> v >> w;
-		edge.push_back({ w,{u,v} });
+		pq.push({ w,{u,v} });
 	}
-	sort(edge.begin(), edge.end());
-	for (int i = 0; i < M; i++) {
-		if (find(edge[i].second.first) != find(edge[i].second.second)) {
-			merge(edge[i].second.first, edge[i].second.second);
-			ans += edge[i].first;
-			if (isAllConnected())break;
+	while (!pq.empty()) {
+		if (isAllConnected())break;
+		int x = find(pq.top().second.first);
+		int y = find(pq.top().second.second);
+		int cost = pq.top().first;
+		pq.pop();
+		if (x != y) {
+			merge(x, y);
+			ans += cost;
 		}
 	}
 	cout << ans;
