@@ -14,21 +14,14 @@
 
 2024년 5월 13일 15:34:13
 
-### 문제 설명
+### 아이디어
 
-<p>Farmer John has decided to make his cows do some acrobatics! First, FJ weighs his cows and finds that they have $N$ ($1\le N\le 2\cdot 10^5$) distinct weights. In particular, for each $i\in [1,N]$, $a_i$ of his cows have a weight of $w_i$ ($1\le a_i\le 10^9, 1\le w_i\le 10^9$).</p>
-
-<p>His most popular stunt involves the cows forming <em>balanced towers</em>. A <em>tower</em> is a sequence of cows where each cow is stacked on top of the next. A tower is <em>balanced</em> if every cow with a cow directly above it has weight at least $K$ ($1\le K\le 10^9$) greater than the weight of the cow directly above it. Any cow can be part of at most one balanced tower.</p>
-
-<p>If FJ wants to create at most $M$ ($1 \le M \le 10^9$) balanced towers of cows, at most how many cows can be part of some tower?</p>
-
-### 입력 
-
- <p>The first line contains three space-separated integers, $N$, $M$, and $K$.</p>
-
-<p>The next $N$ lines contain two space-separated integers, $w_{i}$ and $a_i$. It is guaranteed that all $w_i$ are distinct.</p>
-
-### 출력 
-
- <p>Output the maximum number of cows in balanced towers if FJ helps the cows form towers optimally.</p>
-
+- 쌓을 수 있는 탑의 개수는 제한되어있으므로 최대한 높이 쌓았을 때 많은 소를 쌓을 수 있다.
+- 그리고 가장 무거운 소부터 깔았을 때 탑을 높이 쌓을 수 있다.
+- 완탐 : 시간초과
+- 내림차순으로 모든 소를 순회하면서
+  - queue에 현재 탑의 최상단의 무게와 사용 탑 개수를 저장한다.
+  - 현재 순회 중인 소 + K >= 탑 최상단 무게
+    - 사용 가능한 탑의 개수를 다시 갱신하고 queue에서 제거한다.
+  - 따라서 사용한 소의 수 = min(현재 소의 수, 사용 가능한 탑의 수)이며
+  - 만약 사용한 소가 존재한다면 다시 queue에 저장하고, 사용한 소 개수를 갱신한다.
