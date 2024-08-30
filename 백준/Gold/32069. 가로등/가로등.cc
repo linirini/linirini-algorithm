@@ -16,8 +16,8 @@ int main() {
 		q.push({x,0});
 	}
 	while (k!= K) {
-		int now = q.front().first;
-		int cost = q.front().second;
+		long long now = q.front().first;
+		long long cost = q.front().second;
 		q.pop();
 		cout << cost << '\n';
 		k++;
