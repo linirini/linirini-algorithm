@@ -14,6 +14,7 @@ int main() {
 		long long x;
 		cin >> x;
 		q.push({x,0});
+		visited.insert(x);
 	}
 	while (k!= K) {
 		long long now = q.front().first;
@@ -21,8 +22,13 @@ int main() {
 		q.pop();
 		cout << cost << '\n';
 		k++;
-		visited.insert(now);
-		if (now + 1 >= 0 && now + 1 <= L && visited.find(now + 1) == visited.end()) q.push({ now + 1, cost + 1 });
-		if (now - 1 >= 0 && now - 1 <= L && visited.find(now - 1) == visited.end()) q.push({ now - 1, cost + 1 });
+		if (now + 1 >= 0 && now + 1 <= L && !visited.count(now + 1)) {
+			q.push({ now + 1, cost + 1 });
+			visited.insert(now+1);
+		}
+		if (now - 1 >= 0 && now - 1 <= L && !visited.count(now - 1)) {
+			q.push({ now - 1, cost + 1 });
+			visited.insert(now - 1);
+		}
 	}
 }
