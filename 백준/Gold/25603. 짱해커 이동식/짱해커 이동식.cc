@@ -11,7 +11,7 @@ int main() {
 	while (pos+K <= N) {
 		int tmp = 1e9;
 		int tmpPos = pos;
-		for (int i = pos; i < pos + K && i < N; i++) {
+		for (int i = pos; i < pos + K; i++) {
 			if (cost[i] <= tmp) {
 				tmpPos = i;
 				tmp = cost[i];
